@@ -27,7 +27,6 @@ def get_temp(w):
 
 
 def test(request, s):
-    nltk.download('tokenizer')
     tokens = word_tokenize(s)
     tags = nltk.pos_tag(tokens)
 
