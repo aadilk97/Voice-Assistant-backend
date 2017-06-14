@@ -1,12 +1,52 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
 from .models import Greeting
+
+import pyowm
+import nltk
+from nltk import word_tokenize
 
 # Create your views here.
 def index(request):
-    # return HttpResponse('Hello from Python!')
+    return HttpResponse('Hello from Python!')
     return render(request, 'index.html')
+
+def get_temp(w):
+    loc = ""
+    #return HttpResponse(w.subtrees())
+    for i in w.subtrees():
+        if i.label() == 'GPE':
+            loc = i[0][0]
+
+    owm = pyowm.OWM('a0fd740e29e007169ed8a60f187ef972')
+    obs = owm.weather_at_place(loc)
+    w = obs.get_weather()
+    return ("It is ", w.get_temperature('celsius')['temp'], " degrees in", loc)
+
+
+
+def test(request, s):
+    tokens = word_tokenize(s)
+    tags = nltk.pos_tag(tokens)
+
+    nouns = []
+    adjectives = []
+    verbs = []
+
+    for tag in tags:
+        if tag[1] == 'NN':
+            nouns.append(tag[0])
+
+        if tag[1] == 'JJ':
+            verbs.append(tag[0])
+
+    w = (nltk.ne_chunk(tags))
+
+    for noun in nouns:
+        if noun == 'temperature':
+            return HttpResponse(get_temp(w))
+
+    #return HttpResponse(nouns)
 
 
 def db(request):
@@ -17,4 +57,7 @@ def db(request):
     greetings = Greeting.objects.all()
 
     return render(request, 'db.html', {'greetings': greetings})
+
+def index(test):
+    return HttpResponse("Base")
 
