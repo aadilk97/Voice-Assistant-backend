@@ -1,2 +1,2 @@
 punkt
-maxent_treebank_pos_
+averaged_perceptron_tagger
