@@ -1,1 +1,2 @@
 punkt
+maxent_treebank_pos_
