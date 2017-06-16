@@ -80,6 +80,19 @@ def convert(s):
         except:
             print("Nothing found")
 
+def get_time(s, w):
+    loc = ""
+    for i in w.subtrees():
+        if i.label() == 'GPE' or i.label == 'GPS':
+            loc = " in " + i[0][0]
+
+    url = "https://www.google.co.in/search?q="
+    url += s
+    page = requests.get(url)
+
+    soup = BeautifulSoup(page.content, 'html5lib')
+    return "It is " + soup.find(class_='_rkc _Peb').get_text() + loc
+
 
 def process(request, s):
     tasks = ['temperature', 'time', 'convert']
@@ -129,6 +142,9 @@ def process(request, s):
 
     if match == 'convert':
         return HttpResponse(convert(s))
+
+    if match == 'time':
+        return HttpResponse(get_time(s, w))
 
 
 def db(request):
