@@ -135,7 +135,7 @@ def process(request, s):
     for pronoun in small_talk_tags:
         for tag in tags:
             if tag[1] == 'PRP' or tag[1] == 'PRP$':
-                respose['data'] = small_talk(s, tag[0], nouns, adjectives, verbs)
+                response['data'] = small_talk(s, tag[0], nouns, adjectives, verbs)
                 return JsonResponse(response)
 
     for task in tasks:
@@ -153,19 +153,19 @@ def process(request, s):
 
 
     if match == 'temperature':
-        respose['data'] = get_temp(w)
+        response['data'] = get_temp(w)
         return JsonResponse(respose)
 
     if match == 'convert':
-        respose['data'] = convert(s)
+        response['data'] = convert(s)
         return JsonResponse(respose)
 
     if match == 'time':
-        respose['data'] = get_time(s, w)
+        response['data'] = get_time(s, w)
         return JsonResponse(respose)
 
     if match == 'score':
-        respose['data'] = get_score(s)
+        response['data'] = get_score(s)
         return JsonResponse(respose)
 
 
