@@ -154,19 +154,19 @@ def process(request, s):
 
     if match == 'temperature':
         response['data'] = get_temp(w)
-        return JsonResponse(respose)
+        return JsonResponse(response)
 
     if match == 'convert':
         response['data'] = convert(s)
-        return JsonResponse(respose)
+        return JsonResponse(response)
 
     if match == 'time':
         response['data'] = get_time(s, w)
-        return JsonResponse(respose)
+        return JsonResponse(response)
 
     if match == 'score':
         response['data'] = get_score(s)
-        return JsonResponse(respose)
+        return JsonResponse(response)
 
 
 
