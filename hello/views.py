@@ -153,8 +153,8 @@ def process(request, s):
 
 
     if match == 'temperature':
-        #response['data'] = get_temp(w)
-        return JsonResponse({'data' : get_temp(w)})
+        response['data'] = get_temp(w)
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
 
     if match == 'convert':
         response['data'] = convert(s)
