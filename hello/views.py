@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import Greeting
 
+import json
 import pyowm
 import nltk
 from nltk import word_tokenize
@@ -59,7 +61,7 @@ def get_temp(w):
     owm = pyowm.OWM('a0fd740e29e007169ed8a60f187ef972')
     obs = owm.weather_at_place(loc)
     w = obs.get_weather()
-    return ("It is ", w.get_temperature('celsius')['temp'], " degrees in ", loc)
+    return ("It is " +  str(w.get_temperature('celsius')['temp']) +  " degrees in " + loc)
 
 def convert(s):
     res = ""
@@ -93,9 +95,17 @@ def get_time(s, w):
     soup = BeautifulSoup(page.content, 'html5lib')
     return "It is " + soup.find(class_='_rkc _Peb').get_text() + loc
 
+def get_score(s):
+    url = "https://www.google.co.in/search?q="
+    url += s
+    page = requests.get(url)
+
+    soup = BeautifulSoup(page.content, "html.parser")
+    return soup.find(class_='_Pc').get_text()
+
 
 def process(request, s):
-    tasks = ['temperature', 'time', 'convert']
+    tasks = ['temperature', 'time', 'convert', 'score']
     small_talk_tags = ['you', 'your']
 
     tokens = word_tokenize(s)
@@ -104,6 +114,11 @@ def process(request, s):
     nouns = []
     adjectives = []
     verbs = []
+
+    response = {}
+
+    if s == "hi" or s == "hello":
+        return HttpResponse(s)
 
     for tag in tags:
         if tag[1] == 'NN':
@@ -120,7 +135,8 @@ def process(request, s):
     for pronoun in small_talk_tags:
         for tag in tags:
             if tag[1] == 'PRP' or tag[1] == 'PRP$':
-                return HttpResponse(small_talk(s, tag[0], nouns, adjectives, verbs))
+                respose['data'] = small_talk(s, tag[0], nouns, adjectives, verbs)
+                return JsonResponse(response)
 
     for task in tasks:
         for noun in nouns:
@@ -135,16 +151,23 @@ def process(request, s):
             if verb == task:
                 match = verb
 
-    #return HttpResponse(match)
 
     if match == 'temperature':
-        return HttpResponse(get_temp(w))
+        respose['data'] = get_temp(w)
+        return JsonResponse(respose)
 
     if match == 'convert':
-        return HttpResponse(convert(s))
+        respose['data'] = convert(s)
+        return JsonResponse(respose)
 
     if match == 'time':
-        return HttpResponse(get_time(s, w))
+        respose['data'] = get_time(s, w)
+        return JsonResponse(respose)
+
+    if match == 'score':
+        respose['data'] = get_score(s)
+        return JsonResponse(respose)
+
 
 
 def db(request):
