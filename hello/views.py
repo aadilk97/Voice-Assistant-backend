@@ -185,14 +185,14 @@ def process(request, s):
         try:
             tmp = numbers[0].partition(":")
             hours = int(tmp[0])
-            min = int(tmp[-1])
+            mins = int(tmp[-1])
         except:
             hours = int(numbers[0])
             mins = 0
 
         for noun in nouns:
-            if noun == 'p.m':
-                hours = int(numbers[0]) + 12
+            if noun == 'p.m' or noun == 'P.M':
+                hours += 12
 
         for t in chunked1.subtrees():
             if t.label() == 'Chunk':
