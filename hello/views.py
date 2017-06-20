@@ -182,22 +182,29 @@ def process(request, s):
         chunked1 = chunkParser1.parse(tags)
         chunked2 = chunkParser2.parse(tags)
 
-        for noun in nouns:
-            if noun == 'a.m':
-                time = int(numbers[0])
+        try:
+            tmp = numbers[0].partition(":")
+            hours = int(tmp[0])
+            min = int(tmp[-1])
+        except:
+            hours = int(numbers[0])
+            mins = 0
 
+        for noun in nouns:
             if noun == 'p.m':
-                time = int(numbers[0]) + 12
+                hours = int(numbers[0]) + 12
 
         for t in chunked1.subtrees():
             if t.label() == 'Chunk':
                 response['data'] = 'ALARM'
-                response['time'] = time
+                response['hours'] = hours
+                response['mins'] = mins
 
         for t in chunked2.subtrees():
             if t.label() == 'Chunk':
                 response['data'] = 'ALARM'
-                response['time'] = time
+                response['hours'] = hours
+                response['mins'] = mins
 
         return JsonResponse(response)
 
