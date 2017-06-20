@@ -61,7 +61,7 @@ def get_temp(w):
     owm = pyowm.OWM('a0fd740e29e007169ed8a60f187ef972')
     obs = owm.weather_at_place(loc)
     w = obs.get_weather()
-    return ("It is " +  str(w.get_temperature('celsius')['temp']) +  " degrees in " + loc)
+    return ("It is " +  str(w.get_temperature('celsius')['temp']) + " degrees in " + loc)
 
 def convert(s):
     res = ""
@@ -80,7 +80,7 @@ def convert(s):
             r = soup.find(text=lambda text: text and "=" in text)
             return r
         except:
-            print("Nothing found")
+            print ("Nothing found")
 
 def get_time(s, w):
     loc = ""
@@ -105,7 +105,7 @@ def get_score(s):
 
 
 def process(request, s):
-    tasks = ['temperature', 'time', 'convert', 'score']
+    tasks = ['temperature', 'time', 'convert', 'score', 'alarm']
     small_talk_tags = ['you', 'your']
 
     tokens = word_tokenize(s)
@@ -114,6 +114,7 @@ def process(request, s):
     nouns = []
     adjectives = []
     verbs = []
+    numbers = []
 
     response = {}
 
@@ -121,7 +122,7 @@ def process(request, s):
         return HttpResponse(s)
 
     for tag in tags:
-        if tag[1] == 'NN':
+        if tag[1] == 'NN' or tag[1] == 'NNS':
             nouns.append(tag[0])
 
         if tag[1] == 'JJ':
@@ -129,6 +130,9 @@ def process(request, s):
 
         if tag[1] == 'VB':
             verbs.append(tag[0])
+
+        if tag[1] == 'CD':
+            numbers.append(tag[0])
 
     w = (nltk.ne_chunk(tags))
 
@@ -166,6 +170,35 @@ def process(request, s):
 
     if match == 'score':
         response['data'] = get_score(s)
+        return JsonResponse(response)
+
+    if match == 'alarm':
+        chunkGram1 = r"""Chunk: {<VB><DT.?>*<NN>}"""
+        chunkParser1 = nltk.RegexpParser(chunkGram1)
+
+        chunkGram2 = r"""Chunk: {<VBN><DT.?>*<NN>}"""
+        chunkParser2 = nltk.RegexpParser(chunkGram2)
+
+        chunked1 = chunkParser1.parse(tags)
+        chunked2 = chunkParser2.parse(tags)
+
+        for noun in nouns:
+            if noun == 'a.m':
+                time = int(numbers[0])
+
+            if noun == 'p.m':
+                time = int(numbers[0]) + 12
+
+        for t in chunked1.subtrees():
+            if t.label() == 'Chunk':
+                response['data'] = 'ALARM'
+                response['time'] = time
+
+        for t in chunked2.subtrees():
+            if t.label() == 'Chunk':
+                response['data'] = 'ALARM'
+                response['time'] = time
+
         return JsonResponse(response)
 
 
