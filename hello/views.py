@@ -190,21 +190,24 @@ def process(request, s):
             hours = int(numbers[0])
             mins = 0
 
+        pmflag = False
         for noun in nouns:
             if noun == 'p.m' or noun == 'P.M':
-                hours += 12
+                pmflag = True
 
         for t in chunked1.subtrees():
             if t.label() == 'Chunk':
                 response['data'] = 'ALARM'
                 response['hours'] = hours
                 response['mins'] = mins
+                response['flag'] = pmflag
 
         for t in chunked2.subtrees():
             if t.label() == 'Chunk':
                 response['data'] = 'ALARM'
                 response['hours'] = hours
                 response['mins'] = mins
+                response['flag'] = pmflag
 
         return JsonResponse(response)
 
