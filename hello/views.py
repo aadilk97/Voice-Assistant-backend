@@ -122,7 +122,7 @@ def process(request, s):
         return HttpResponse(s)
 
     for tag in tags:
-        if tag[1] == 'NN' or tag[1] == 'NNS':
+        if tag[1] == 'NN' or tag[1] == 'NNS' or tag[1] == 'NNP':
             nouns.append(tag[0])
 
         if tag[1] == 'JJ':
