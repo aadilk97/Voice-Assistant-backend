@@ -193,6 +193,7 @@ def process(request, s):
         pmflag = False
         for noun in nouns:
             if noun == 'p.m' or noun == 'P.M':
+                hours += 18
                 pmflag = True
 
         for t in chunked1.subtrees():
