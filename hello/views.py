@@ -142,6 +142,7 @@ def process(request, s):
                 response['data'] = small_talk(s, tag[0], nouns, adjectives, verbs)
                 return JsonResponse(response)
 
+    match = ""
     for task in tasks:
         for noun in nouns:
             if noun == task:
@@ -210,6 +211,11 @@ def process(request, s):
                 response['mins'] = mins
                 response['flag'] = pmflag
 
+        return JsonResponse(response)
+
+    #No match found open browser in app
+    else:
+        response['data'] = ""
         return JsonResponse(response)
 
 
