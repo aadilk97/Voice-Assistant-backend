@@ -214,7 +214,7 @@ def process(request, s):
         return JsonResponse(response)
 
     #No match found open browser in app
-    else:
+    if match == "":
         response['data'] = "null"
         return JsonResponse(response)
 
