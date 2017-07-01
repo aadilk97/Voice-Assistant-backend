@@ -14,6 +14,16 @@ import random
 
 # Create your views here.
 
+def verify(chunkGram, tags):
+    chunkParser = nltk.RegexpParser(chunkGram)
+    chunked = chunkParser.parse(tags)
+
+    for t in chunked.subtrees():
+        if t.label() == 'Chunk':
+            return True
+
+    return False
+
 def small_talk(s, pronoun, nouns, adjectives, verbs):
     if pronoun == 'you' or pronoun == 'your':
     # If user asks about the bot
@@ -103,6 +113,25 @@ def get_score(s):
     soup = BeautifulSoup(page.content, "html.parser")
     return soup.find(class_='_Pc').get_text()
 
+def no_match(s):
+    def check(_class, soup):
+        try:
+            soup = soup.find(class_=_class)
+            return soup.get_text()
+        except:
+            return 'null'
+
+    url = "https://www.google.co.in/search?q=" + s
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    classes = ['_tXc', '_sPg']
+    for c in classes:
+        res = check(c, soup)
+        if res != 'null':
+            return res
+
+    return 'null'
 
 def process(request, s):
     tasks = ['temperature', 'time', 'convert', 'score', 'alarm']
@@ -156,10 +185,14 @@ def process(request, s):
             if verb == task:
                 match = verb
 
-
     if match == 'temperature':
-        response['data'] = get_temp(w)
-        return HttpResponse(json.dumps(response), content_type="application/json")
+        chunkGram = r"""Chunk: {<WP>?<VBZ><DT>?<NN>}"""
+
+        if verify(chunkGram, tags) == True:
+            response['data'] = get_temp(w)
+            return HttpResponse(json.dumps(response), content_type="application/json")
+
+        else: no_match()
 
     if match == 'convert':
         response['data'] = convert(s)
@@ -174,14 +207,7 @@ def process(request, s):
         return JsonResponse(response)
 
     if match == 'alarm':
-        chunkGram1 = r"""Chunk: {<VB><DT.?>*<NN>}"""
-        chunkParser1 = nltk.RegexpParser(chunkGram1)
-
-        chunkGram2 = r"""Chunk: {<VBN><DT.?>*<NN>}"""
-        chunkParser2 = nltk.RegexpParser(chunkGram2)
-
-        chunked1 = chunkParser1.parse(tags)
-        chunked2 = chunkParser2.parse(tags)
+        chunkGram = r"""Chunk: {<VB.*><DT.?>*<NN>}"""
 
         try:
             tmp = numbers[0].partition(":")
@@ -197,27 +223,21 @@ def process(request, s):
                 hours += 12
                 pmflag = True
 
-        for t in chunked1.subtrees():
-            if t.label() == 'Chunk':
-                response['data'] = 'ALARM'
-                response['hours'] = hours
-                response['mins'] = mins
-                response['flag'] = pmflag
+        if verify(chunkGram, tags):
+            response['data'] = 'ALARM'
+            response['hours'] = hours
+            response['mins'] = mins
+            response['flag'] = pmflag
 
-        for t in chunked2.subtrees():
-            if t.label() == 'Chunk':
-                response['data'] = 'ALARM'
-                response['hours'] = hours
-                response['mins'] = mins
-                response['flag'] = pmflag
 
         return JsonResponse(response)
 
     #No match found open browser in app
     if match == "":
-        response['data'] = "null"
-        return JsonResponse(response)
+        response = {}
+        response['data'] = no_match(s)
 
+        return JsonResponse(response)
 
 
 def db(request):
