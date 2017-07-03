@@ -134,7 +134,7 @@ def no_match(s):
     return 'null'
 
 def process(request, s):
-    tasks = ['temperature', 'time', 'convert', 'score', 'alarm']
+    tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open']
     small_talk_tags = ['you', 'your']
 
     tokens = word_tokenize(s)
@@ -146,6 +146,7 @@ def process(request, s):
     numbers = []
 
     response = {}
+    response['code'] = 100
 
     if s == "hi" or s == "hello":
         return HttpResponse(s)
@@ -232,10 +233,18 @@ def process(request, s):
 
         return JsonResponse(response)
 
+    if match == 'open':
+        s = s.replace('open', '')
+        response['data'] = s
+        response['code'] = '102'
+        
+        return JsonResponse(response)
+
     #No match found open browser in app
     if match == "":
         response = {}
         response['data'] = no_match(s)
+        response['code'] = 101
 
         return JsonResponse(response)
 
