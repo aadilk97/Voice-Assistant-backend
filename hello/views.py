@@ -12,6 +12,8 @@ from bs4 import BeautifulSoup
 import requests
 import random
 
+from gettingstarted.synm_dict import find_match
+
 # Create your views here.
 
 def verify(chunkGram, tags):
@@ -173,27 +175,26 @@ def process(request, s):
                 return JsonResponse(response)
 
     match = ""
-    for task in tasks:
-        for noun in nouns:
-            if noun == task:
-                match = noun
+    for word in str(s).split():
+        for task in tasks:
+            if word == task:
+                match = task
 
-        for adjective in adjectives:
-            if adjective == task:
-                match = adjective
+    if match == "":
+        for word in str(s).split():
+            match = find_match(word)
+            if match != "":
+                break
 
-        for verb in verbs:
-            if verb == task:
-                match = verb
 
     if match == 'temperature':
         chunkGram = r"""Chunk: {<WP>?<VBZ><DT>?<NN>}"""
 
-        if verify(chunkGram, tags) == True:
+        if verify(chunkGram, tags):
             response['data'] = get_temp(w)
             return HttpResponse(json.dumps(response), content_type="application/json")
 
-        else: no_match()
+        else: no_match(s)
 
     if match == 'convert':
         response['data'] = convert(s)
@@ -237,7 +238,7 @@ def process(request, s):
         s = s.replace('open', '')
         response['data'] = s
         response['code'] = '102'
-        
+
         return JsonResponse(response)
 
     #No match found open browser in app
