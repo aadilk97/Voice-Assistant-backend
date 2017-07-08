@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 
 import requests
 import random
+import wikipedia
 
 from gettingstarted.synm_dict import find_match
 
@@ -115,28 +116,35 @@ def get_score(s):
     soup = BeautifulSoup(page.content, "html.parser")
     return soup.find(class_='_Pc').get_text()
 
-def no_match(s):
-    def check(_class, soup):
-        try:
-            soup = soup.find(class_=_class)
-            return soup.get_text()
-        except:
-            return 'null'
+def no_match(s, nouns):
+    # def check(_class, soup):
+    #     try:
+    #         soup = soup.find(class_=_class)
+    #         return soup.get_text()
+    #     except:
+    #         return 'null'
+    #
+    # url = "https://www.google.co.in/search?q=" + s
+    # page = requests.get(url)
+    # soup = BeautifulSoup(page.content, 'html.parser')
+    #
+    # classes = ['_tXc', '_sPg']
+    # for c in classes:
+    #     res = check(c, soup)
+    #     if res != 'null':
+    #         return res
+    #
+    # return 'null'
 
-    url = "https://www.google.co.in/search?q=" + s
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
+    subject = ''
+    for noun in nouns:
+        subject += noun + ' '
 
-    classes = ['_tXc', '_sPg']
-    for c in classes:
-        res = check(c, soup)
-        if res != 'null':
-            return res
+    return wikipedia.summary(subject, sentences=1)
 
-    return 'null'
 
 def process(request, s):
-    tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open']
+    tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open', 'navigate']
     small_talk_tags = ['you', 'your']
 
     tokens = word_tokenize(s)
@@ -188,13 +196,17 @@ def process(request, s):
 
 
     if match == 'temperature':
-        chunkGram = r"""Chunk: {<WP>?<VBZ><DT>?<NN>}"""
+        chunkGram1 = r"""Chunk: {<.>*<NN><IN><NNP>+}"""
+        chunkGram2 = r"""Chunk: {<.>*<JJ.*><IN><NNP>+}"""
 
-        if verify(chunkGram, tags):
+        if verify(chunkGram1, tags) or verify(chunkGram2, tags):
             response['data'] = get_temp(w)
             return HttpResponse(json.dumps(response), content_type="application/json")
 
-        else: no_match(s)
+        else:
+            response['data'] = no_match(s)
+            response['code'] = 101
+            return JsonResponse(response)
 
     if match == 'convert':
         response['data'] = convert(s)
@@ -236,6 +248,8 @@ def process(request, s):
 
     if match == 'open':
         s = s.replace('open', '')
+        s = s.replace('launch', '')
+        s = s.replace('start', '')
         response['data'] = s
         response['code'] = '102'
 
@@ -244,7 +258,7 @@ def process(request, s):
     #No match found open browser in app
     if match == "":
         response = {}
-        response['data'] = no_match(s)
+        response['data'] = no_match(s, nouns)
         response['code'] = 101
 
         return JsonResponse(response)

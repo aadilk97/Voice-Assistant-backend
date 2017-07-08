@@ -8,4 +8,4 @@ def find_match(s):
             if word == s:
                 return item[0]
 
-    return "sss"
+    return ""
