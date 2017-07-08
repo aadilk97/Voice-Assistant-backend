@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
 from .models import Greeting
+import re
 
 import json
 import pyowm
@@ -117,30 +118,33 @@ def get_score(s):
     return soup.find(class_='_Pc').get_text()
 
 def no_match(s, nouns):
-    # def check(_class, soup):
-    #     try:
-    #         soup = soup.find(class_=_class)
-    #         return soup.get_text()
-    #     except:
-    #         return 'null'
-    #
-    # url = "https://www.google.co.in/search?q=" + s
-    # page = requests.get(url)
-    # soup = BeautifulSoup(page.content, 'html.parser')
-    #
-    # classes = ['_tXc', '_sPg']
-    # for c in classes:
-    #     res = check(c, soup)
-    #     if res != 'null':
-    #         return res
-    #
-    # return 'null'
+    def check(_class, soup):
+        try:
+            soup = soup.find(class_=_class)
+            return soup.get_text()
+        except:
+            return 'null'
 
-    subject = ''
-    for noun in nouns:
-        subject += noun + ' '
+    url = "https://www.google.co.in/search?q=" + s
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
 
-    return wikipedia.summary(subject, sentences=1)
+    classes = ['_tXc', '_sPg']
+    for c in classes:
+        res = check(c, soup)
+        if res != 'null':
+            return res
+
+    return 'null'
+
+    # subject = ''
+    # for noun in nouns:
+    #     subject += noun + ' '
+    #
+    # data =  wikipedia.summary(subject, sentences=1)
+    # re.sub("([\(\[]).*?([\)\]])", "\g<1>\g<2>", data)
+    # return data
+
 
 
 def process(request, s):
