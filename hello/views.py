@@ -9,7 +9,6 @@ import pyowm
 import nltk
 from nltk import word_tokenize
 from bs4 import BeautifulSoup
-from nltk.tag import StanfordPOSTagger
 
 import requests
 import random
