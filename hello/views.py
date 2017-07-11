@@ -9,12 +9,14 @@ import pyowm
 import nltk
 from nltk import word_tokenize
 from bs4 import BeautifulSoup
+from nltk.tag import StanfordPOSTagger
 
 import requests
 import random
 import wikipedia
 
 from gettingstarted.synm_dict import find_match
+
 
 # Create your views here.
 
@@ -259,9 +261,32 @@ def process(request, s):
 
         return JsonResponse(response)
 
+    if match == 'navigate':
+        location = ''
+        grammar = r"""Chunk: {<VB.*><NN.*>+}"""
+        tokens = word_tokenize(s)
+        tagger = StanfordPOSTagger('gettingstarted/tagger/english-bidirectional-distsim.tagger', 'gettingstarted/tagger/stanford-postagger.jar')
+        tags = tagger.tag(tokens)
+
+        cp = nltk.RegexpParser(grammar)
+        parsed = cp.parse(tags)
+
+        for t in parsed.subtrees():
+            if t.label() == 'Chunk':
+                x = t
+
+        for tag in x:
+            if tag[1] == 'NN' or tag[1] == 'NNS' or tag[1] == 'NNP':
+                location += tag[0] + " "
+
+        response['data'] = location
+        response['code'] = 103
+        return JsonResponse(response)
+
+        
+
     #No match found open browser in app
     if match == "":
-        response = {}
         response['data'] = no_match(s, nouns)
         response['code'] = 101
 
