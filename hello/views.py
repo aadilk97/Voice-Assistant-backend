@@ -265,19 +265,14 @@ def process(request, s):
         location = ''
         grammar = r"""Chunk: {<VB.*><NN.*>+}"""
         tokens = word_tokenize(s)
-        tagger = StanfordPOSTagger('gettingstarted/tagger/english-bidirectional-distsim.tagger', 'gettingstarted/tagger/stanford-postagger.jar')
-        tags = tagger.tag(tokens)
+        tags = nltk.pos_tag(tokens)
+        w = nltk.ne_chunk(tags)
 
-        cp = nltk.RegexpParser(grammar)
-        parsed = cp.parse(tags)
-
-        for t in parsed.subtrees():
-            if t.label() == 'Chunk':
-                x = t
-
-        for tag in x:
-            if tag[1] == 'NN' or tag[1] == 'NNS' or tag[1] == 'NNP':
-                location += tag[0] + " "
+        location = ''
+        for t in w.subtrees():
+            if t.label() == 'PERSON' or t.label() == 'ORGANIZATION':
+                for leaf in t.leaves():
+                    location += str(leaf[0]) + " "
 
         response['data'] = location
         response['code'] = 103

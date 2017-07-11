@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f61f0087-3d20-49e5-a69f-cb1d437718a0" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gettingstarted/tagger/english-bidirectional-distsim.tagger" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gettingstarted/tagger/stanford-postagger.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hello/views.py" afterPath="$PROJECT_DIR$/hello/views.py" />
     </list>
@@ -21,15 +23,15 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hello/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="268" column="33" lean-forward="true" selection-start-line="268" selection-start-column="33" selection-end-line="268" selection-end-column="33" />
+            <state relative-caret-position="425">
+              <caret line="281" column="0" lean-forward="true" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#695#1744#0" expanded="false" />
                 <element signature="e#1767#2107#0" expanded="false" />
                 <element signature="e#2129#2614#0" expanded="false" />
-                <element signature="e#7734#7880#0" expanded="false" />
-                <element signature="e#7903#8023#0" expanded="false" />
+                <element signature="e#7535#7681#0" expanded="false" />
+                <element signature="e#7704#7824#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -188,24 +190,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gettingstarted" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="python-getting-started" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="python-getting-started" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gettingstarted" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tagger" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -400,7 +384,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="807" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -458,8 +442,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -507,8 +491,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -556,8 +540,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -597,8 +581,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -638,8 +622,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -679,8 +663,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -720,8 +704,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -753,8 +737,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -786,8 +770,8 @@
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -897,15 +881,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hello/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="268" column="33" lean-forward="true" selection-start-line="268" selection-start-column="33" selection-end-line="268" selection-end-column="33" />
+        <state relative-caret-position="425">
+          <caret line="281" column="0" lean-forward="true" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#695#1744#0" expanded="false" />
             <element signature="e#1767#2107#0" expanded="false" />
             <element signature="e#2129#2614#0" expanded="false" />
-            <element signature="e#7734#7880#0" expanded="false" />
-            <element signature="e#7903#8023#0" expanded="false" />
+            <element signature="e#7535#7681#0" expanded="false" />
+            <element signature="e#7704#7824#0" expanded="false" />
           </folding>
         </state>
       </provider>
