@@ -91,9 +91,8 @@ def convert(s):
         return res
     except:
         try:
-            soup = soup.find(id="search")
-            r = soup.find(text=lambda text: text and "=" in text)
-            return r
+            soup = soup.find(class_='std _tLi').get_text()
+            return soup
         except:
             print ("Nothing found")
 
