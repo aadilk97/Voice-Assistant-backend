@@ -7,14 +7,17 @@ import re
 import json
 import pyowm
 import nltk
+import feedparser
 from nltk import word_tokenize
 from bs4 import BeautifulSoup
+from collections import OrderedDict
 
 import requests
 import random
 import wikipedia
 
 from gettingstarted.synm_dict import find_match
+
 
 
 # Create your views here.
@@ -148,7 +151,7 @@ def no_match(s, nouns):
 
 
 def process(request, s):
-    tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open', 'navigate']
+    tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open', 'navigate', 'news']
     small_talk_tags = ['you', 'your']
 
     tokens = word_tokenize(s)
@@ -276,7 +279,26 @@ def process(request, s):
         response['code'] = 103
         return JsonResponse(response)
 
-        
+    if match == 'news':
+        response = {}
+        titles = []
+        links = []
+        d = feedparser.parse('http://feeds.bbci.co.uk/news/rss.xml')
+
+        newscount = 0
+    for item in d['items']:
+        titles.append(item['title'])
+        links.append(item['link'])
+        newscount += 1
+        if newscount > 4:
+            break
+
+        response['data'] = ''
+        response['title'] = titles
+        response['links'] = links
+        response['code'] = 104
+
+    return JsonResponse(response)
 
     #No match found open browser in app
     if match == "":
