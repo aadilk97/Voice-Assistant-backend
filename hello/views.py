@@ -293,10 +293,7 @@ def process(request, s):
             break
 
 
-        # response['data'] = ''
-        # response['title'] = titles
-        # response['links'] = links
-        # response['code'] = 104
+        response['code'] = 104
 
     return JsonResponse(response)
 
