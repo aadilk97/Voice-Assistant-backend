@@ -19,7 +19,6 @@ import wikipedia
 from gettingstarted.synm_dict import find_match
 
 
-
 # Create your views here.
 
 def verify(chunkGram, tags):
