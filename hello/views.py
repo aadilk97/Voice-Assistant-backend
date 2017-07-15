@@ -286,16 +286,16 @@ def process(request, s):
         d = feedparser.parse('http://feeds.bbci.co.uk/news/rss.xml')
 
         newscount = 0
-    for item in d['items']:
-        response.update({item['title']: item['link']})
-        newscount += 1
-        if newscount > 4:
-            break
+        for item in d['items']:
+            response.update({item['title']: item['link']})
+            newscount += 1
+            if newscount > 4:
+                break
 
 
         response['code'] = 104
         response['data'] = ''
-    return JsonResponse(response)
+        return JsonResponse(response)
 
     #No match found open browser in app
     if match == "":
