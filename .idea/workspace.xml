@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f61f0087-3d20-49e5-a69f-cb1d437718a0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hello/views.py" afterPath="$PROJECT_DIR$/hello/views.py" />
-    </list>
+    <list default="true" id="f61f0087-3d20-49e5-a69f-cb1d437718a0" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,14 +18,13 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hello/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="296" column="65" lean-forward="false" selection-start-line="296" selection-start-column="65" selection-end-line="296" selection-end-column="65" />
+            <state relative-caret-position="137">
+              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#462#651#0" expanded="false" />
                 <element signature="e#711#1760#0" expanded="false" />
                 <element signature="e#1783#2123#0" expanded="false" />
-                <element signature="e#2145#2584#0" expanded="false" />
                 <element signature="e#2610#2942#0" expanded="false" />
                 <element signature="e#2966#3151#0" expanded="false" />
                 <element signature="e#3181#3836#0" expanded="false" />
@@ -66,21 +63,11 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gettingstarted/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
+            <state relative-caret-position="210">
               <caret line="14" column="43" lean-forward="false" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -448,7 +435,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -506,7 +492,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -564,7 +549,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -614,7 +598,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -664,7 +647,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -714,7 +696,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -764,7 +745,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -806,7 +786,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -848,7 +827,6 @@
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
@@ -940,13 +918,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gettingstarted/urls.py">
+    <entry file="file://$PROJECT_DIR$/gettingstarted/synm_dict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="43" lean-forward="false" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -958,24 +934,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gettingstarted/synm_dict.py">
+    <entry file="file://$PROJECT_DIR$/gettingstarted/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="210">
+          <caret line="14" column="43" lean-forward="false" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hello/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="296" column="65" lean-forward="false" selection-start-line="296" selection-start-column="65" selection-end-line="296" selection-end-column="65" />
+        <state relative-caret-position="137">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#462#651#0" expanded="false" />
             <element signature="e#711#1760#0" expanded="false" />
             <element signature="e#1783#2123#0" expanded="false" />
-            <element signature="e#2145#2584#0" expanded="false" />
             <element signature="e#2610#2942#0" expanded="false" />
             <element signature="e#2966#3151#0" expanded="false" />
             <element signature="e#3181#3836#0" expanded="false" />
