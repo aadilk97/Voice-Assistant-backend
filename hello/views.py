@@ -294,7 +294,7 @@ def process(request, s):
 
 
         response['code'] = 104
-
+        response['data'] = ''
     return JsonResponse(response)
 
     #No match found open browser in app
