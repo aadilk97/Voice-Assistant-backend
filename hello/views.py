@@ -287,16 +287,16 @@ def process(request, s):
 
         newscount = 0
     for item in d['items']:
-        titles.append(item['title'])
-        links.append(item['link'])
+        response.update({item['title']: item['link']})
         newscount += 1
         if newscount > 4:
             break
 
-        response['data'] = ''
-        response['title'] = titles
-        response['links'] = links
-        response['code'] = 104
+
+        # response['data'] = ''
+        # response['title'] = titles
+        # response['links'] = links
+        # response['code'] = 104
 
     return JsonResponse(response)
 
