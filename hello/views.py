@@ -88,6 +88,7 @@ def convert(s):
 
     soup = BeautifulSoup(page.content, 'html.parser')
 
+
     try:
         res = soup.find(class_='_Qeb _HOb').get_text() + soup.find(class_='_Peb _rkc').get_text()
         return res
@@ -109,7 +110,8 @@ def get_time(s, w):
     page = requests.get(url)
 
     soup = BeautifulSoup(page.content, 'html5lib')
-    return "It is " + soup.find(class_='_rkc _Peb').get_text() + loc
+    return (soup.prettify())
+    #return "It is " + soup.find(class_='_rkc _Peb').get_text() + loc
 
 def get_score(s):
     url = "https://www.google.co.in/search?q="
