@@ -110,8 +110,7 @@ def get_time(s, w):
     page = requests.get(url)
 
     soup = BeautifulSoup(page.content, 'html5lib')
-    return (soup.prettify())
-    #return "It is " + soup.find(class_='_rkc _Peb').get_text() + loc
+    return "It is " + soup.find(class_='_rkc _Peb').get_text() + loc
 
 def get_score(s):
     url = "https://www.google.co.in/search?q="
@@ -284,13 +283,28 @@ def process(request, s):
         response = {}
         titles = []
         links = []
-        d = feedparser.parse('http://feeds.bbci.co.uk/news/rss.xml')
+        url = ''
+
+        for token in tokens:
+            if token == 'sports':
+                url = 'http://feeds.bbci.co.uk/sport/rss.xml'
+
+            if token == 'technology':
+                url = 'http://feeds.bbci.co.uk/news/technology/rss.xml'
+
+            if token == 'business':
+                url = 'http://feeds.bbci.co.uk/news/business/rss.xml'
+
+        if url == '':
+            url = 'http://feeds.bbci.co.uk/news/world/asia/india/rss.xml'
+
+        d = feedparser.parse(url)
 
         newscount = 0
         for item in d['items']:
             response.update({item['title']: item['link']})
             newscount += 1
-            if newscount > 4:
+            if newscount > 15:
                 break
 
 
