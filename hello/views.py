@@ -120,7 +120,7 @@ def get_score(s):
     soup = BeautifulSoup(page.content, "html.parser")
     return soup.find(class_='_Pc').get_text()
 
-def no_match(s, nouns):
+def no_match(s):
     def check(_class, soup):
         try:
             soup = soup.find(class_=_class)
@@ -148,7 +148,29 @@ def no_match(s, nouns):
     # re.sub("([\(\[]).*?([\)\]])", "\g<1>\g<2>", data)
     # return data
 
+def is_math(s):
+    s = str(s).replace('into', '*')
+    s = str(s).replace('divided by', '/')
+    tokens = nltk.word_tokenize(s)
+    tags = nltk.pos_tag(tokens)
 
+    for i in range(len(tags)):
+        if tags[i][0] == '+' or tags[i][0] == '-' or tags[i][0] == '/' or tags[i][0] == '*':
+            lst = list(tags[i])
+            lst[1] = 'OPT'
+            t = tuple(lst)
+            tags[i] = t
+
+    chunkGram = r"""Chunk: {<CD><OPT><CD>}"""
+    if verify(chunkGram, tags):
+        exp = ''
+        for tag in tags:
+            if tag[1] == 'OPT' or tag[1] == 'CD':
+                exp += tag[0]
+
+        return True, exp
+
+    return False, ''
 
 def process(request, s):
     tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open', 'navigate', 'news']
@@ -307,14 +329,19 @@ def process(request, s):
             if newscount > 15:
                 break
 
-
         response['code'] = 104
         response['data'] = 'Here are some of the latest headlines'
         return JsonResponse(response)
 
+    flag, exp = is_math(s)
+    if flag:
+        response['data'] = exp
+        response['code'] = 105
+        return JsonResponse(response)
+
     #No match found open browser in app
     if match == "":
-        response['data'] = no_match(s, nouns)
+        response['data'] = no_match(s)
         response['code'] = 101
 
         return JsonResponse(response)
