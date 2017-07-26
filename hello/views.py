@@ -151,6 +151,7 @@ def no_match(s):
 def is_math(s):
     s = str(s).replace('into', '*')
     s = str(s).replace('divided by', '/')
+    s = str(s).replace('minus', '-')
     tokens = nltk.word_tokenize(s)
     tags = nltk.pos_tag(tokens)
 
@@ -173,6 +174,9 @@ def is_math(s):
     return False, ''
 
 def process(request, s):
+
+    return HttpResponse(wikipedia.summary(s, sentences=1))
+
     tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open', 'navigate', 'news']
     small_talk_tags = ['you', 'your']
 
