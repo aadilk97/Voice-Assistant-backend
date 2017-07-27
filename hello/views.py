@@ -173,9 +173,30 @@ def is_math(s):
 
     return False, ''
 
-def process(request, s):
+def get_wiki_subject(s, tags):
+    subject = ''
+    w = nltk.ne_chunk(tags, binary=True)
 
-    return HttpResponse(wikipedia.summary(s, sentences=1))
+    for tree in w.subtrees():
+        if tree.label() == 'NE':
+            for leaf in tree.leaves():
+                subject += leaf[0] + " "
+
+    if subject == '':
+        grammar = r""" Chunk: {<.*>+}
+                        }<WP><VB.*>{
+                   """
+        parser = nltk.RegexpParser(grammar)
+        parsed = parser.parse(tags)
+
+        for tree in parsed.subtrees():
+            if tree.label() == 'Chunk':
+                for leaf in tree.leaves():
+                    subject += leaf[0] + " "
+
+    return subject
+
+def process(request, s):
 
     tasks = ['temperature', 'time', 'convert', 'score', 'alarm', 'open', 'navigate', 'news']
     small_talk_tags = ['you', 'your']
@@ -341,6 +362,12 @@ def process(request, s):
     if flag:
         response['data'] = exp
         response['code'] = 105
+        return JsonResponse(response)
+
+    subject = get_wiki_subject(s, tags)
+    if subject != '':
+        response['data'] = wikipedia.summary(subject, sentences=1)
+        response['code'] = 101
         return JsonResponse(response)
 
     #No match found open browser in app
