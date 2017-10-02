@@ -6,3 +6,4 @@ wikipedia
 gunicorn
 pyowm 
 nltk
+feedparser
