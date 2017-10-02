@@ -7,3 +7,4 @@ gunicorn
 pyowm 
 nltk
 feedparser
+numpy
