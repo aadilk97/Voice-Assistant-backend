@@ -16,7 +16,6 @@ import requests
 import random
 import wikipedia
 
-import dlib
 
 from gettingstarted.synm_dict import find_match
 
